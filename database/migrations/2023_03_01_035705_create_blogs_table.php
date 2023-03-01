@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title', 50);
             $table->text('content');
             $table->string('image', 255);
-            $table->boolean('status')->default(0)->comment('0 - public , 1 - private, 2 - pendding');
+            $table->boolean('status')->default(1)->comment('1 - public , 2 - private, 3- pendding');
             $table->timestamps();
         });
     }
@@ -30,7 +30,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('blogs');
     }
