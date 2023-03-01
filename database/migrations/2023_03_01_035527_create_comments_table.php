@@ -11,16 +11,13 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50);
-            $table->text('content');
-            $table->string('image', 50);
-            $table->boolean('status')->default(0)->comment('0 - đang chờ , 1 - công khai, 2 - riêng tư');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('blog_id');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -30,8 +27,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('comments');
     }
 };
