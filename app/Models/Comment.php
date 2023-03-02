@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Comment extends Model
 {
     use HasFactory;
+
     public function blogs(): BelongsTo
     {
         return $this->belongsTo(Blog::class, 'blog_id', 'id');
     }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

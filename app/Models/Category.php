@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
+
     public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class, 'category_id', 'id');
