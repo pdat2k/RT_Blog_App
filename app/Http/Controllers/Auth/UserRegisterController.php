@@ -10,8 +10,7 @@ class UserRegisterController extends Controller
 {
     public function index()
     {
-        $route = 'auth.user.register';
-        return view('auth.register', compact('route'));
+        return view('auth.register', ['route' => 'auth.user.register']);
     }
 
     public function register(Request $request)

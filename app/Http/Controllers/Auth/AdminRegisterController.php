@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,18 +11,12 @@ class AdminRegisterController extends Controller
 {
     public function index()
     {
-        $route = 'auth.admin.register';
-        return view('auth.register', compact('route'));
+        return view('auth.register', ['route' => 'auth.admin.register']);
     }
 
-    public function register(Request $request)
+    public function register(AdminRegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required|string|min:6',
-        ]);
+        $request->validated();
 
         $user = new User();
         $user->name = $request->name;

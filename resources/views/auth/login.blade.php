@@ -5,7 +5,7 @@
 @section('name','Sign in')
 
 @section('container')
-    <form action="{{route('auth.login.create')}}" method="POST" autocomplete="off" >
+    <form action="{{route('auth.login.account')}}" method="POST" autocomplete="off" >
         @csrf
         @if (session('success'))
             <div class="alert alert-success">

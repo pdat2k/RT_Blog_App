@@ -14,7 +14,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function create(Request $request)
+    public function login(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
