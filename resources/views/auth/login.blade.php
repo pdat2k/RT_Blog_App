@@ -5,12 +5,22 @@
 @section('name','Sign in')
 
 @section('container')
-    <form action="" method="POST" autocomplete="off" >
+    <form action="{{route('auth.login.create')}}" method="POST" autocomplete="off" >
         @csrf
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <x-form.input>
             <x-slot name='label'>Username or email</x-slot>
             <x-slot name='type'>text</x-slot>
-            <x-slot name='input'>username</x-slot>
+            <x-slot name='input'>name</x-slot>
         </x-form.input>
         <x-form.input>
             <x-slot name='label'>Password</x-slot>
@@ -26,7 +36,7 @@
         </div>
         <x-form.button>
             <x-slot name='button'>Login</x-slot>
-            <x-slot name='href'>register</x-slot>
+            <x-slot name='href'>auth.user</x-slot>
             <x-slot name='link'>Don’t have an account? Sign up here</x-slot>
         </x-form.button>
     </form>
