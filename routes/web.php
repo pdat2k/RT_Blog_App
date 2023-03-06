@@ -21,7 +21,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
-Route::post('/login/create', [LoginController::class, 'create'])->name('auth.login.create');
+Route::post('/login/account', [LoginController::class, 'login'])->name('auth.login.account');
 
 Route::get('/register/user', [UserRegisterController::class, 'index'])->name('auth.user');
 Route::post('/register/user/register', [UserRegisterController::class, 'register'])->name('auth.user.register');
