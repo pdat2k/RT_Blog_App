@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminRegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\UserRegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('app');
-});
+    return view('layouts.app');
+})->name('home');
 
-Route::get('/login', function () {
-    return view('auth.signin');
-})->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
+Route::post('/login/create', [LoginController::class, 'create'])->name('auth.login.create');
 
-Route::get('/register', function () {
-    return view('auth.signup');
-})->name('register');
+Route::get('/register/user', [UserRegisterController::class, 'index'])->name('auth.user');
+Route::post('/register/user/register', [UserRegisterController::class, 'register'])->name('auth.user.register');
+
+Route::get('/register/admin', [AdminRegisterController::class, 'index'])->name('auth.admin');
+Route::post('/register/admin/register', [AdminRegisterController::class, 'register'])->name('auth.admin.register');
