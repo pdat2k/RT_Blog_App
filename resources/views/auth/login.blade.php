@@ -12,9 +12,9 @@
                 {{ session('success') }}
             </div>
         @endif
-        @if (session('error'))
+        @if (session('failed'))
             <div class="alert alert-danger">
-                {{ session('error') }}
+                {{ session('failed') }}
             </div>
         @endif
         <x-form.input>

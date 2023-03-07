@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -14,21 +13,24 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'password' => 'required|string|min:6',
-        ]);
 
-        if (Auth::attempt(['email' => $request->name, 'password' => $request->password])) {
-            return redirect()->route('home');
+        $credentials = $request->getCredentials();
+
+        if (!Auth::validate($credentials)) {
+            return redirect()->route('auth.login')->with('failed', trans('auth.failed'));
         }
 
-        if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
-            return redirect()->route('home');
-        }
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-        return redirect()->route('auth.login')->with('error', 'Account does not exist!');
+        Auth::login($user);
+
+        return $this->authenticated($request, $user);
+    }
+
+    protected function authenticated(LoginRequest $request, $user)
+    {
+        return redirect()->intended();
     }
 }
