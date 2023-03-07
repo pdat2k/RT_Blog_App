@@ -20,11 +20,14 @@ Route::get('/', function () {
     return view('layouts.app');
 })->name('home');
 
-Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
-Route::post('/login/account', [LoginController::class, 'login'])->name('auth.login.account');
+Route::prefix('login')->group(function () {
+    Route::get('/', [LoginController::class, 'index'])->name('auth.login');
+    Route::post('/account', [LoginController::class, 'login'])->name('auth.login.account');
+});
 
-Route::get('/register/user', [UserRegisterController::class, 'index'])->name('auth.user');
-Route::post('/register/user/register', [UserRegisterController::class, 'register'])->name('auth.user.register');
-
-Route::get('/register/admin', [AdminRegisterController::class, 'index'])->name('auth.admin');
-Route::post('/register/admin/register', [AdminRegisterController::class, 'register'])->name('auth.admin.register');
+Route::prefix('register')->group(function () {
+    Route::get('/user', [UserRegisterController::class, 'index'])->name('auth.user');
+    Route::post('/user/register', [UserRegisterController::class, 'register'])->name('auth.user.register');
+    Route::get('/admin', [AdminRegisterController::class, 'index'])->name('auth.admin');
+    Route::post('/admin/register', [AdminRegisterController::class, 'register'])->name('auth.admin.register');
+});

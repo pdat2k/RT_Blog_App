@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Dirape\Token\Token;
+
 
 class AdminRegisterController extends Controller
 {
@@ -16,16 +17,17 @@ class AdminRegisterController extends Controller
 
     public function register(AdminRegisterRequest $request)
     {
-        $request->validated();
+        $validated = $request->validated();
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->token_verify = $request->_token;
-        $user->role = 2;
-        $user->save();
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+            'token_verify' => (new Token())->Unique('users', 'token_verify', 60),
+            'role' => User::ROLE_ADMIN,
+            'status' => User::STATUS_NO_ACTIVE,
+        ]);
 
-        return redirect()->route('auth.login')->with('success', 'Registration successful!');
+        return redirect()->route('auth.login')->with('success', __('auth.success'));
     }
 }
