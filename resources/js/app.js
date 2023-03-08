@@ -5,6 +5,12 @@ window.addEventListener("load", function () {
     const wrapper = this.document.getElementById("wrapper");
     const menu = wrapper.querySelector(".header-container");
     menu.classList.toggle("sticky-active");
+
+    const aside = wrapper.querySelector(".aside");
+    const header = wrapper.querySelector(".header");
+    if (aside) {
+        header.classList.add("header-session");
+    }
 });
 
 window.addEventListener("scroll", function () {

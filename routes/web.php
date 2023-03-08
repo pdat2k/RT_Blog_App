@@ -31,3 +31,11 @@ Route::prefix('register')->group(function () {
     Route::get('/admin', [AdminRegisterController::class, 'index'])->name('auth.admin');
     Route::post('/admin/register', [AdminRegisterController::class, 'register'])->name('auth.admin.register');
 });
+
+Route::get('/forgot', function () {
+    return view('auth.forget');
+})->name('auth.forgot');
+
+Route::get('/create-blog', function () {
+    return view('layouts.create');
+})->name('post.create');

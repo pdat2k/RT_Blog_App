@@ -32,7 +32,7 @@
                 <input class="auth-group-check form-check-input" type="checkbox" name="rememberPassword" id="checkbox">
                 <label class="auth-group-label form-check-label" for="checkbox" >Remember password</label>
             </div>
-            <a class="auth-group-forgot" href="">Forgot your password?</a>
+            <a class="auth-group-forgot" href="{{route('auth.forgot')}}">Forgot your password?</a>
         </div>
         <x-form.button>
             <x-slot name='button'>Login</x-slot>

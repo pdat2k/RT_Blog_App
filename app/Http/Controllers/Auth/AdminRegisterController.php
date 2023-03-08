@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRegisterRequest;
 use App\Models\User;
-use Dirape\Token\Token;
+use Illuminate\Support\Str;
 
 
 class AdminRegisterController extends Controller
@@ -23,7 +23,7 @@ class AdminRegisterController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
-            'token_verify' => (new Token())->Unique('users', 'token_verify', 60),
+            'token_verify' =>  Str::random(60),
             'role' => User::ROLE_ADMIN,
             'status' => User::STATUS_NO_ACTIVE,
         ]);
