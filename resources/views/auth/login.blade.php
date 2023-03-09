@@ -7,14 +7,14 @@
 @section('container')
     <form action="{{route('auth.login.account')}}" method="POST" autocomplete="off" >
         @csrf
-        @if (session('success'))
+        @if (session(__('util.success')))
             <div class="alert alert-success">
-                {{ session('success') }}
+                {{ session(__('util.success')) }}
             </div>
         @endif
-        @if (session('failed'))
+        @if (session(__('util.failed')))
             <div class="alert alert-danger">
-                {{ session('failed') }}
+                {{ session(__('util.failed')) }}
             </div>
         @endif
         <x-form.input>
@@ -29,7 +29,7 @@
         </x-form.input>
         <div class="auth-group-bottom d-flex justify-content-between align-items-baseline">
             <div class="auth-group-checkbox form-check">
-                <input class="auth-group-check form-check-input" type="checkbox" name="rememberPassword" id="checkbox">
+                <input class="auth-group-check form-check-input" type="checkbox" name="remember_password" id="checkbox">
                 <label class="auth-group-label form-check-label" for="checkbox" >Remember password</label>
             </div>
             <a class="auth-group-forgot" href="{{route('auth.forgot')}}">Forgot your password?</a>
