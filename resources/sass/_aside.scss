@@ -1,0 +1,16 @@
+.header-session {
+    background: none;
+    height: 122px;
+}
+
+.aside {
+    padding-top: 34px;
+    margin-bottom: 40px;
+    &-breadcrumb {
+        margin-bottom: 34px;
+    }
+    &-container {
+        padding: 31px 30px 52px;
+        background-color: #d9d9d9;
+    }
+}
