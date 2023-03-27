@@ -7,8 +7,9 @@ window.addEventListener("load", function () {
     menu.classList.toggle("sticky-active");
 
     const aside = wrapper.querySelector(".aside");
+    const detail = wrapper.querySelector(".detail");
     const header = wrapper.querySelector(".header");
-    if (aside) {
+    if (aside || detail) {
         header.classList.add("header-session");
     }
 });

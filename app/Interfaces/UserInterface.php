@@ -4,5 +4,9 @@ namespace App\Interfaces;
 
 interface UserInterface
 {
-    public function getRegister($request = NULL, int $role);
+    public function createUser($request = NULL, int $role);
+
+    public function findUser($column, $operator = NULL, $value = NULL);
+
+    public function updateUser($id, $request);
 }

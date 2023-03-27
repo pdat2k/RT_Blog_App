@@ -48,3 +48,8 @@ p {
     padding: 0 15px;
     margin: 0 auto;
 }
+
+html {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}

@@ -4,5 +4,7 @@ namespace App\Interfaces;
 
 interface AuthInterface
 {
-    public function getLogin($request = NULL);
+    public function login($request = NULL);
+
+    public function logout();
 }

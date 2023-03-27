@@ -8,24 +8,29 @@ use Illuminate\Support\Facades\Auth;
 class AuthService implements AuthInterface
 {
 
-    public function getLogin($request = NULL)
+    public function login($request = NULL)
     {
-
         $credentials = $request->getCredentials();
+        $rememberPassword = $request->has('remember_password');
 
         if (!Auth::validate($credentials)) {
-            return redirect()->route('auth.login')->with('failed', __('auth.failed'));
+            return redirect()->route('user.login')->with('failed', __('auth.failed'));
         }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-        Auth::login($user);
+        if ($rememberPassword) {
+            Auth::login($user, $rememberPassword);
+        } else {
+            Auth::login($user);
+        }
 
-        return $this->authenticated($request, $user);
+        return redirect()->intended();
     }
 
-    protected function authenticated()
+    public function logout()
     {
-        return redirect()->intended();
+        Auth::logout();
+        return redirect()->route('user.login');
     }
 }
