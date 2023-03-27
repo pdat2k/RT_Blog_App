@@ -50,8 +50,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'role' => 'boolean',
-        'status' => 'boolean'
+        'role' => 'integer',
+        'status' => 'integer'
     ];
 
     public function blogs(): HasMany
