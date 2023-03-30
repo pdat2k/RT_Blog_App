@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\AuthInterface;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AuthService implements AuthInterface
@@ -19,13 +20,12 @@ class AuthService implements AuthInterface
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-        if ($rememberPassword) {
-            Auth::login($user, $rememberPassword);
+        if ($user->status == User::STATUS_ACTIVE) {
+            $rememberPassword ? Auth::login($user, $rememberPassword) : Auth::login($user);
+            return redirect()->intended();
         } else {
-            Auth::login($user);
+            return redirect()->route('user.login')->with('failed', __('auth.failed'));
         }
-
-        return redirect()->intended();
     }
 
     public function logout()

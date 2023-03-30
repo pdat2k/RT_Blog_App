@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\User\RegisterController as RegisterUserController;
 use App\Http\Controllers\Admin\RegisterController as RegisterAdminController;
+use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\Blog\CommentController;
+use App\Http\Controllers\Blog\LikeController;
 use App\Http\Controllers\User\FogotController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\VerificationController;
@@ -18,10 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/', '/user/blogs', 301);
+
 Route::group(['as' => 'user.'], function () {
     Route::group(['prefix' => 'login'], function () {
         Route::get('/', [LoginController::class, 'index'])->name('login');
         Route::post('/index', [LoginController::class, 'login'])->name('login.index');
+        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     });
 
     Route::group(['prefix' => 'register/user'], function () {
@@ -38,17 +44,31 @@ Route::group(['as' => 'user.'], function () {
     Route::get('/verify', [VerificationController::class, 'verify'])->name('verify');
     Route::post('/resend/verify', [VerificationController::class, 'resend'])->name('resend.verify');
 
-    Route::get('/', function () {
-        return view('layouts.home');
-    })->name('home');
+    Route::prefix('user')->group(function () {
+        Route::resource('blogs', BlogController::class)->names([
+            'index' => 'home',
+            'create' => 'create',
+            'show' => 'detail',
+            'store' => 'store',
+            'destroy' => 'remove',
+            'edit' => 'edit',
+            'update' => 'update'
+        ]);
+    });
 
-    Route::get('/create-blog', function () {
-        return view('layouts.create');
-    })->name('create');
+    Route::prefix('user')->middleware('auth')->group(function () {
+        Route::resource('comments', CommentController::class)->names([
+            'store' => 'comments.store',
+            'destroy' => 'comments.remove',
+        ]);
+    });
 
-    Route::get('/detail-blog', function () {
-        return view('layouts.detail');
-    })->name('detail');
+    Route::prefix('user')->middleware('auth')->group(function () {
+        Route::resource('likes', LikeController::class)->names([
+            'store' => 'likes.add',
+            'destroy' => 'likes.remove',
+        ]);
+    });
 });
 
 Route::group(['as' => 'admin.'], function () {

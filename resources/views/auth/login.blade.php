@@ -29,8 +29,7 @@
         </x-form.input>
         <div class="auth-group-bottom d-flex justify-content-between align-items-baseline">
             <div class="auth-group-checkbox form-check">
-                <input class="auth-group-check form-check-input" type="checkbox" name="remember_password" id="checkbox"
-                    {{ old('remember_password') || (isset($login) && $login->remember_token) ? 'checked' : '' }}>
+                <input class="auth-group-check form-check-input" type="checkbox" name="remember_password" id="checkbox" checked>
                 <label class="auth-group-label form-check-label" for="checkbox">Remember password</label>
             </div>
             <a class="auth-group-forgot" href="{{ route('user.forgot') }}">Forgot your password?</a>

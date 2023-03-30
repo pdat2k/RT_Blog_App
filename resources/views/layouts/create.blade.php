@@ -1,9 +1,7 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('title', 'Create blog')
 
 @section('content')
-        @include('layouts.header')
-        @include('layouts.aside')
-        @include('layouts.footer')
+    @include('layouts.aside')
 @endsection
