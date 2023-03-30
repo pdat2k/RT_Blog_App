@@ -23,7 +23,7 @@ class VerifyService implements VerificationInterface
             ->modify(config('mail.timeout'));
         if ($tokenTimeExpire->getTimestamp() >= Carbon::now()->timestamp) {
             $this->userService->updateUser($user->id, ['status' => User::STATUS_ACTIVE]);
-            return redirect()->route('user.home');
+            return redirect()->route('user.login');
         } else {
             return view('auth.error');
         }

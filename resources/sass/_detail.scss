@@ -12,6 +12,7 @@
         font-weight: 700;
         font-size: 18px;
         margin-bottom: 39px;
+        word-wrap: break-word;
     }
     &-nav {
         display: flex;
@@ -42,6 +43,8 @@
         }
     }
     &-button {
+        display: flex;
+        gap: 31px;
         &-btn {
             display: inline-block;
             width: 104px;
@@ -55,7 +58,6 @@
         }
         &-approved {
             background-color: #abb1ab;
-            margin-right: 31px;
         }
         &-deteteblog {
             background-color: #dc3545;
@@ -73,6 +75,7 @@
             font-size: 14px;
             color: #747474;
             margin-bottom: 55px;
+            word-break: break-all;
         }
     }
     &-content {
@@ -95,8 +98,15 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 36px;
             margin-bottom: 80px;
+            &-link {
+                color: $black-color;
+                &:hover {
+                    color: $black-color;
+                }
+            }
         }
         &-box {
+            height: 456px;
             border: 1px solid #cccc;
             border-radius: 8px;
             overflow: hidden;
@@ -124,6 +134,12 @@
         &-boxs {
             display: flex;
             gap: 17px;
+            margin-bottom: 29px;
+            &-button {
+                width: 50px;
+                border: none;
+                background-color: $white-color;
+            }
         }
         &-form {
             width: 100%;
@@ -152,4 +168,69 @@
             }
         }
     }
+    &-iconHeart {
+        font-size: 30px;
+        cursor: pointer;
+    }
+    &-iconHeart-active {
+        font-size: 30px;
+        cursor: pointer;
+        color: red;
+    }
+    &-heart {
+        display: flex;
+        gap: 6px;
+    }
+    &-numberHeart {
+        font-weight: 400;
+        font-size: 18px;
+        color: $black-color;
+    }
+    &-heart-btn {
+        border: 0;
+        background-color: $white-color;
+    }
+}
+.modal {
+    padding-right: 0 !important;
+    &-header {
+        .detail-comment-boxs-button {
+            align-self: start;
+            width: 20px;
+        }
+    }
+    &-open {
+        padding-right: 0 !important;
+    }
+    &-dialog {
+        margin-top: 185px;
+    }
+    &-footer {
+        padding-left: 54px;
+        padding-right: 54px;
+    }
+    .btn {
+        width: 80px;
+        height: 40px;
+    }
+}
+
+.carousel {
+    display: none;
+    &-indicators {
+        &-list {
+            margin-top: 30px;
+            position: relative;
+        }
+        &-item {
+            width: 14px !important;
+            height: 14px !important;
+            background-color: #d9d9d9 !important;
+            border-radius: 50%;
+        }
+    }
+}
+
+.carousel-indicators-item.active {
+    background-color: #801616 !important;
 }

@@ -1,20 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\LikeInterface;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    private $likeService;
+
+    public function __construct(LikeInterface $likeService)
+    {
+        $this->likeService = $likeService;
+    }
     public function index()
     {
-        return view('layouts.home');
+        //
     }
 
     /**
@@ -24,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('layouts.create');
+        //
     }
 
     /**
@@ -35,7 +42,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $like = $this->likeService->addLike($request['blogId']);
+        return response()->json($like);
     }
 
     /**
@@ -46,7 +54,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('layouts.detail');
+        //
     }
 
     /**
