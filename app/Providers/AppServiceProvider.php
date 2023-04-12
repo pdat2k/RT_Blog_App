@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\AdminInterface;
 use App\Interfaces\AuthInterface;
 use App\Interfaces\BlogInterface;
 use App\Interfaces\CommentInterface;
@@ -9,6 +10,7 @@ use App\Interfaces\LikeInterface;
 use App\Interfaces\UserInterface;
 use App\Interfaces\VerificationInterface;
 use App\Interfaces\VerifyMailInterface;
+use App\Services\AdminService;
 use App\Services\AuthService;
 use App\Services\BlogService;
 use App\Services\CommentService;
@@ -54,6 +56,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(LikeInterface::class, function () {
             return new LikeService();
+        });
+
+        $this->app->bind(AdminInterface::class, function () {
+            return new AdminService();
         });
     }
 
