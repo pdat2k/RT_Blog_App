@@ -22,6 +22,9 @@ class AuthService implements AuthInterface
 
         if ($user->status == User::STATUS_ACTIVE) {
             $rememberPassword ? Auth::login($user, $rememberPassword) : Auth::login($user);
+            if ($user->role == User::ROLE_ADMIN) {
+                return redirect()->route('admin.home');
+            }
             return redirect()->intended();
         } else {
             return redirect()->route('user.login')->with('failed', __('auth.failed'));

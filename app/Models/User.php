@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -67,5 +68,10 @@ class User extends Authenticatable
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany(Blog::class, 'likes', 'user_id', 'blog_id', 'id', 'blogs.id')->withTimestamps();;
+    }
+
+    public function getTimeAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y');
     }
 }

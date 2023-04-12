@@ -1,7 +1,7 @@
 <div class="detail">
     <div class="content">
         <div class="aside-breadcrumb">
-            Home > <span class="aside-breadcrumb-title">Detail Blog</span>
+            {{ __('util.home') }} > <span class="aside-breadcrumb-title">{{ __('util.detailBlog') }}</span>
         </div>
         <h3 class="detail-title">
             {{ $blog->title }}
@@ -20,14 +20,13 @@
                 </div>
             </div>
             <div class="detail-button">
-                <p class="detail-button-btn detail-button-approved">Not approved</p>
+                <p class="detail-button-btn detail-button-approved">{{ __('util.notApproved') }}</p>
                 @auth
                     @if ($blog->user->is(auth()->user()))
-                        <button class="detail-button-btn detail-button-deteteblog modalDelete">Delete Blog</button>
-                        <form action="{{ route('user.edit', ['blog' => $id]) }}" method="get">
-                            @csrf
-                            <button type="submit" class="btn btn-success detail-button-btn">Edit</button>
-                        </form>
+                        <button
+                            class="detail-button-btn detail-button-deteteblog modalDelete">{{ __('util.deleteBlog') }}</button>
+                        <a type="submit" class="btn btn-success detail-button-btn"
+                            href="{{ route('user.edit', ['blog' => $id]) }}">{{ __('util.edit') }}</a>
                     @endif
                 @endauth
             </div>
@@ -38,7 +37,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title detail-content-title">Delete</h5>
+                                    <h5 class="modal-title detail-content-title">{{ __('util.delete') }}</h5>
                                     <button type="button" class="close detail-comment-boxs-button modalDelete"
                                         data-dismiss="modal" aria-label="Close">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -48,15 +47,15 @@
                                     </button>
                                 </div>
                                 <div class="modal-body text-center p-5">
-                                    Are you sure want to delete this blog?
+                                    {{ __('util.messageDeleteBlog') }}
                                 </div>
                                 <div class="modal-footer d-flex justify-content-between">
                                     <button type="button" class="btn btn-secondary modalDelete"
-                                        data-dismiss="modal">Cancel</button>
+                                        data-dismiss="modal">{{ __('util.cancel') }}</button>
                                     <form action="{{ route('user.remove', ['blog' => $id]) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">{{ __('util.delete') }}</button>
                                     </form>
                                 </div>
                             </div>
@@ -75,7 +74,7 @@
         <div class="detail-content">
             @if (!$related->isEmpty())
                 <h3 class="detail-content-title">
-                    Related
+                    {{ __('util.related') }}
                 </h3>
                 <p class="detail-content-rectangle"></p>
                 <div class="detail-content-boxs">
@@ -136,11 +135,11 @@
                     <i class="fa-regular fa-heart detail-iconHeart"></i>
                 @endif
             </button>
-            <span class="detail-numberHeart">{{ $blog->likes()->count() ?? '0' }} likes</span>
+            <span class="detail-numberHeart">{{ $blog->likes()->count() ?? '0' }} {{ __('util.likes') }}</span>
         </div>
         <div class="detail-content">
             <h3 class="detail-content-title">
-                Comment
+                {{ __('util.comment') }}
             </h3>
             <p class="detail-content-rectangle"></p>
             <div class="detail-comment-boxs">

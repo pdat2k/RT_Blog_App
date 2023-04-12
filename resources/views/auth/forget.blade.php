@@ -8,14 +8,14 @@
     <form action="{{ route('user.forgot.verify') }}" method="POST" autocomplete="off">
         @csrf
         <x-form.input>
-            <x-slot name='label'>Email</x-slot>
-            <x-slot name='type'>email</x-slot>
-            <x-slot name='input'>email</x-slot>
+            <x-slot name='label'>{{ __('util.email') }}</x-slot>
+            <x-slot name='type'>{{ __('util.email1s') }}</x-slot>
+            <x-slot name='input'>{{ __('util.email1s') }}</x-slot>
         </x-form.input>
         <x-form.button>
-            <x-slot name='button'>Send</x-slot>
-            <x-slot name='href'>user.login</x-slot>
-            <x-slot name='link'>Already have an account? Login</x-slot>
+            <x-slot name='button'>{{ __('util.send') }}</x-slot>
+            <x-slot name='href'>{{ __('util.userLogin') }}</x-slot>
+            <x-slot name='link'>{{ __('util.textLogin') }}</x-slot>
         </x-form.button>
     </form>
 @endsection

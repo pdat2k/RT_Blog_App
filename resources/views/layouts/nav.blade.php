@@ -1,7 +1,7 @@
 <div class="header-nav-logo d-flex justify-content-between align-items-center">
     <a class="header-group-logo d-flex align-items-center" href="{{ route('user.home') }}">
         <img src="{{ asset('images/logo.png') }}" alt="header-logo" class="header-logo" />
-        <p class="header-logo-name">RT-Blogs</p>
+        <p class="header-logo-name">{{ __('util.project') }}</p>
     </a>
     <div class="header-nav-search">
         <form action="{{ route('user.home') }}" method="get">
@@ -23,7 +23,7 @@
 <div class="header-nav-button d-flex justify-content-between align-items-center">
     <div class="header-nav-top d-flex justify-content-between align-items-center">
         <a href="#" class="header-nav-link">Top</a>
-        <a class="header-create-blog" href="{{ route('user.create') }}">Create Blog</a>
+        <a class="header-create-blog" href="{{ route('user.create') }}">{{ __('util.createBlog') }}</a>
     </div>
     <div class="header-signin d-flex justify-content-between align-items-center">
         <p class="header-signin-name">{{ auth()->user()->name ?? 'myname' }}</p>
@@ -36,16 +36,16 @@
         </div>
         <ul class="header-signin-menu">
             <li class="header-signin-menu-item">
-                <a href="" class="header-signin-menu-link">Tài khoản</a>
+                <a href="" class="header-signin-menu-link">{{ __('util.account') }}</a>
             </li>
             <li class="header-signin-menu-item">
                 <form action="{{ route('user.logout') }}" method="POST">
                     @csrf
                     <button class="header-signin-menu-link" type="submit">
                         @if (auth()->check())
-                            Đăng xuất
+                            {{ __('util.logout') }}
                         @else
-                            Đăng nhập
+                            {{ __('util.login') }}
                         @endif
                     </button>
                 </form>
