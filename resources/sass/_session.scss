@@ -192,3 +192,24 @@
     top: -50%;
     color: $red-color;
 }
+
+.section-admin {
+    height: 80vh;
+    .table {
+        td {
+            line-height: 37px;
+        }
+        &-icon {
+            width: 50px;
+        }
+    }
+    .section-infomation {
+        padding: 0;
+        &-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+    }
+}

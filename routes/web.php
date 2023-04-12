@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\RegisterController as RegisterUserController;
 use App\Http\Controllers\Admin\RegisterController as RegisterAdminController;
 use App\Http\Controllers\Blog\BlogController;
@@ -75,5 +76,11 @@ Route::group(['as' => 'admin.'], function () {
     Route::group(['prefix' => 'register/admin'], function () {
         Route::get('/', [RegisterAdminController::class, 'index'])->name('register');
         Route::post('/index', [RegisterAdminController::class, 'register'])->name('register.index');
+    });
+
+    Route::prefix('admin')->middleware('admin')->group(function () {
+        Route::resource('users', AdminController::class)->names([
+            'index' => 'home',
+        ]);
     });
 });

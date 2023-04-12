@@ -20,9 +20,9 @@
         @endforeach
 
         <x-form.button>
-            <x-slot name='button'>Sign up</x-slot>
-            <x-slot name='href'>user.login</x-slot>
-            <x-slot name='link'>Already have an account? Login</x-slot>
+            <x-slot name='button'>{{ __('util.signUp') }}</x-slot>
+            <x-slot name='href'>{{ __('util.userLogin') }}</x-slot>
+            <x-slot name='link'>{{ __('util.textLogin') }}</x-slot>
         </x-form.button>
     </form>
 @endsection

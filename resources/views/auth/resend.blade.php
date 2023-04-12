@@ -8,7 +8,7 @@
     <form action="{{ route('user.resend.verify') }}" method="POST" autocomplete="off">
         @csrf
         <div class="auth-group-input form-group">
-            <label class="auth-group-label d-block form-label" for="email">Email
+            <label class="auth-group-label d-block form-label" for="email">{{ __('util.email') }}
                 <span class="text-danger">*</span>
             </label>
             <input class="auth-group-text d-block w-100 form-control" id='email' type="email" name='email'

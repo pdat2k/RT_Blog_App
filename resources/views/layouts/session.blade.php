@@ -1,13 +1,13 @@
 <section class="section">
     <div class="content">
         <div class="blogpost-content d-flex justify-content-between align-items-center">
-            <h1 class="blogpost-title">List Blog</h1>
+            <h1 class="blogpost-title">{{ __('util.listBlog') }}</h1>
             <div class="blogpost-box">
                 <form class="blogpost-box-form" action="{{ route('user.home') }}" method="get">
                     <input type="hidden" name="search" value="{{ $search ?? '' }}">
                     <select class="form-select blogpost-category" name="category_id"
                         onchange='if(this.value != 0) { this.form.submit(); }'>
-                        <option value="0" selected hidden>Category</option>
+                        <option value="0" selected hidden>{{ __('util.category') }}</option>
                         @foreach ($categories as $id => $title)
                             <option value="{{ $id }}"
                                 {{ isset($category_id) && $category_id == $id ? 'selected' : '' }}>
@@ -56,8 +56,7 @@
                             </p>
                             <div class="blogpost-card-btn">
                                 <a href="{{ route('user.detail', ['blog' => $blog->id]) }}"
-                                    class="blogpost-card-link">Read
-                                    more
+                                    class="blogpost-card-link">{{ __('util.readMore') }}
                                     <div class="blogpost-card-right">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 card-icon">

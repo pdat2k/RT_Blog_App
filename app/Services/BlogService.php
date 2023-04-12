@@ -15,14 +15,17 @@ class BlogService implements BlogInterface
     {
         try {
             $categories = Category::pluck('title', 'id');
-            $blogs = Blog::with('user')->select('blogs.*')->orderBy('updated_at', 'desc');
+            $blogs = Blog::with('user')
+                ->where('status', Blog::STATUS_PUBLIC)
+                ->orderBy('updated_at', 'desc');
+
 
             if ($categoryId) {
-                $blogs->where('blogs.category_id', $categoryId);
+                $blogs->where('category_id', $categoryId);
             }
 
             if ($search) {
-                $blogs->where('blogs.title', 'like', '%' . $search . '%');
+                $blogs->where('title', 'like', '%' . $search . '%');
             }
 
             $blogs = $blogs->paginate(config('services.perPage'));
@@ -57,7 +60,7 @@ class BlogService implements BlogInterface
                 'title' => $request->title,
                 'content' => $request->content,
                 'image' => $imagePath,
-                'status' => Blog::STATUS_PUBLIC
+                'status' => Blog::STATUS_PENDING
             ]);
 
             return redirect()->route('user.home');
@@ -75,6 +78,7 @@ class BlogService implements BlogInterface
                     ->orWhere('title', 'like', '%' . $blogDetail->title . '%');
             })
                 ->whereNotIn('id', [$blogDetail?->id])
+                ->where('status', Blog::STATUS_PUBLIC)
                 ->take(config('services.takeNumber'))
                 ->get();
             $comments = $blogDetail?->comments()->orderBy('created_at', 'desc')->get();
@@ -124,12 +128,17 @@ class BlogService implements BlogInterface
                 $imagePath = $this->findBlog($id)->image;
             }
 
-            Blog::where('id', $id)->update([
-                'category_id' => $request->categoryId,
-                'title' => $request->title,
-                'content' => $request->content,
-                'image' => $imagePath,
-            ]);
+            if ($this->findBlog($id)->user_id === Auth::user()->id) {
+                Blog::where('id', $id)->update([
+                    'category_id' => $request->categoryId,
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'image' => $imagePath,
+                    'status' => Blog::STATUS_PENDING
+                ]);
+            } else {
+                return back()->with('error', 'Can\'t update Blog');
+            }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

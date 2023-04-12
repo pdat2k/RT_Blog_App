@@ -23,7 +23,7 @@
                 <div class="header-menu-logo">
                     <img src="{{ asset('images/logo.png') }}" alt="header-logo" class="header-menu-image-icon" />
                 </div>
-                <p class="header-logo-name-menu">RT-Blogs</p>
+                <p class="header-logo-name-menu">{{ __('util.project') }}</p>
             </a>
             <div class="header-nav-search">
                 <form action="{{ route('user.home') }}" method="get">
@@ -60,19 +60,19 @@
     </div>
     <ul class="p-0">
         <li class="header-signin-menu-item">
-            <a class="header-signin-menu-link" href="{{ route('user.create') }}">Create blog</a>
+            <a class="header-signin-menu-link" href="{{ route('user.create') }}">{{ __('util.createBlog') }}</a>
         </li>
         <li class="header-signin-menu-item">
-            <a href="" class="header-signin-menu-link">Tài khoản</a>
+            <a href="" class="header-signin-menu-link">{{ __('util.account') }}</a>
         </li>
         <li class="header-signin-menu-item">
             <form action="{{ route('user.logout') }}" method="POST">
                 @csrf
                 <button class="header-signin-menu-link" type="submit">
                     @if (auth()->check())
-                        Đăng xuất
+                        {{ __('util.logout') }}
                     @else
-                        Đăng nhập
+                        {{ __('util.login') }}
                     @endif
                 </button>
             </form>

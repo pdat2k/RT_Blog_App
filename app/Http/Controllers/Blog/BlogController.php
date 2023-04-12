@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogRequest;
 use App\Interfaces\BlogInterface;
+use App\Models\Blog;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -73,6 +75,7 @@ class BlogController extends Controller
     {
         try {
             $data = $this->blogService->detail($id);
+            $this->authorize('view', $data['blog']);
 
             return view('layouts.detail', [
                 'id' => $id,
@@ -96,7 +99,9 @@ class BlogController extends Controller
         $blog = $this->blogService->findBlog($id);
         $categories = $this->blogService->category();
 
-        return view('layouts.edit', ['blog' => $blog, 'categories' => $categories]);
+        return $blog->user_id === Auth::user()->id
+            ? view('layouts.edit', compact('blog', 'categories'))
+            : abort(403);
     }
 
     /**

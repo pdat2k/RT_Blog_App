@@ -17,7 +17,7 @@
                     <div class="auth-header-logo">
                         <img class="auth-header-img" src="{{ asset('images/logo.png') }}" alt="auth-header-logo">
                     </div>
-                    <span class="auth-header-name">RT-Blogs</span>
+                    <span class="auth-header-name">{{ __('util.project') }}</span>
                 </a>
                 <h3 class="auth-signIn mb-3">@yield('name')</h3>
                 @yield('container')

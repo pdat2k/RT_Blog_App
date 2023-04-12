@@ -18,26 +18,27 @@
             </div>
         @endif
         <x-form.input>
-            <x-slot name='label'>Username or email</x-slot>
-            <x-slot name='type'>text</x-slot>
-            <x-slot name='input'>name</x-slot>
+            <x-slot name='label'>{{ __('util.userOrName') }}</x-slot>
+            <x-slot name='type'>{{ __('util.text') }}</x-slot>
+            <x-slot name='input'>{{ __('util.name') }}</x-slot>
         </x-form.input>
         <x-form.input>
-            <x-slot name='label'>Password</x-slot>
-            <x-slot name='type'>password</x-slot>
-            <x-slot name='input'>password</x-slot>
+            <x-slot name='label'>{{ __('util.password') }}</x-slot>
+            <x-slot name='type'>{{ __('util.password1') }}</x-slot>
+            <x-slot name='input'>{{ __('util.password1') }}</x-slot>
         </x-form.input>
         <div class="auth-group-bottom d-flex justify-content-between align-items-baseline">
             <div class="auth-group-checkbox form-check">
-                <input class="auth-group-check form-check-input" type="checkbox" name="remember_password" id="checkbox" checked>
-                <label class="auth-group-label form-check-label" for="checkbox">Remember password</label>
+                <input class="auth-group-check form-check-input" type="checkbox" name="remember_password" id="checkbox"
+                    checked>
+                <label class="auth-group-label form-check-label" for="checkbox">{{ __('util.rememberPassword') }}</label>
             </div>
-            <a class="auth-group-forgot" href="{{ route('user.forgot') }}">Forgot your password?</a>
+            <a class="auth-group-forgot" href="{{ route('user.forgot') }}">{{ __('util.textForgot') }}</a>
         </div>
         <x-form.button>
-            <x-slot name='button'>Login</x-slot>
-            <x-slot name='href'>user.register</x-slot>
-            <x-slot name='link'>Don’t have an account? Sign up here</x-slot>
+            <x-slot name='button'>{{ __('util.login1') }}</x-slot>
+            <x-slot name='href'>{{ __('util.userRegister') }}</x-slot>
+            <x-slot name='link'>{{ __('util.textRegister') }}</x-slot>
         </x-form.button>
     </form>
 @endsection

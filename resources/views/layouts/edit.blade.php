@@ -6,10 +6,10 @@
     <aside class="aside">
         <div class="content">
             <div class="aside-breadcrumb">
-                Home > <span class="aside-breadcrumb-title">Edit Blog</span>
+                {{ __('util.home') }} > <span class="aside-breadcrumb-title">{{ __('util.editBlog') }}</span>
             </div>
             <div class="aside-container">
-                <h3 class="aside-title ">Edit Blog</h3>
+                <h3 class="aside-title ">{{ __('util.editBlog') }}</h3>
                 <form action="{{ route('user.update', ['blog' => $blog->id]) }}" class="aside-form" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -18,12 +18,12 @@
                         <label for="" class="aside-label"></label>
                     </div>
                     <div class="aside-form-group">
-                        <label for="" class="aside-label">Category
+                        <label for="" class="aside-label">{{ __('util.category') }}
                             <span class="aside-label-start">*</span>
                         </label>
                         <select class="form-select aside-form-category" aria-label="Default select example"
                             name='categoryId'>
-                            <option value="" selected hidden>Select category</option>
+                            <option value="" selected hidden>{{ __('util.selectCategory') }}</option>
                             @foreach ($categories as $id => $title)
                                 <option value="{{ $id }}"
                                     @if ($blog->category_id == $id) {{ 'selected' }} @endif>{{ $title }}
@@ -35,7 +35,7 @@
                         @enderror
                     </div>
                     <div class="aside-form-group">
-                        <label for="title" class="aside-label">Title
+                        <label for="title" class="aside-label">{{ __('util.title') }}
                             <span class="aside-label-start">*</span>
                         </label>
                         <input type="text" class="form-control aside-form-title mb-3" id="title" placeholder="Title"
@@ -45,8 +45,8 @@
                         @enderror
                     </div>
                     <div class="aside-form-group">
-                        <p class="aside-label-upload">Upload image</p>
-                        <label for="image" class="aside-form-fileImage">Upload Image</label>
+                        <p class="aside-label-upload">{{ __('util.uploadImage') }}</p>
+                        <label for="image" class="aside-form-fileImage">{{ __('util.uploadImage') }}</label>
                         <input type="file" class="form-control aside-form-file" id="image" name='image' />
                         <img id="photo" src="{{ $blog->image }}" alt="aside-form-image" class="aside-form-image"
                             onerror="if (this.src != '/images/default-image.jpg') this.src = '/images/default-image.jpg';" />
@@ -55,7 +55,7 @@
                         @enderror
                     </div>
                     <div class="aside-form-group">
-                        <label for="description" class="aside-label">Description
+                        <label for="description" class="aside-label">{{ __('util.description') }}
                             <span class="aside-label-start">*</span>
                         </label>
                         <textarea class="form-control aside-form-description" id="description" rows="3" name='content'>{{ $blog->content }}</textarea>
@@ -64,7 +64,7 @@
                         @enderror
                     </div>
                     <div class="aside-form-group">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">{{ __('util.update') }}</button>
                     </div>
             </div>
             </form>
