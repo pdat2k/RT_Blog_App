@@ -1,0 +1,100 @@
+.header-session {
+    background: none;
+    height: 122px;
+}
+
+.aside {
+    padding-top: 34px;
+    margin-bottom: 40px;
+    &-breadcrumb {
+        margin-bottom: 34px;
+        color: #a19f9f;
+        &-title {
+            color: $black-color;
+            font-weight: 700;
+        }
+        margin-bottom: 16px;
+    }
+    &-container {
+        padding: 31px 30px 52px;
+        background-color: #d9d9d9;
+    }
+    &-title {
+        color: $black-color;
+        font-weight: 700;
+    }
+    &-label {
+        display: block;
+        margin-bottom: 10px;
+        &-start {
+            color: $red-color;
+        }
+        &-upload {
+            margin-bottom: 20px;
+        }
+    }
+    &-form {
+        &-group {
+            margin-bottom: 34px;
+            .btn {
+                display: inline-block;
+                width: 280px;
+                height: 40px;
+            }
+        }
+        &-group:last-child {
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+        &-category {
+            max-width: 334px;
+            height: 40px;
+            background-color: $white-color;
+        }
+        &-title {
+            width: 100%;
+            background-color: $white-color;
+            height: 40px;
+        }
+        &-description {
+            height: 459px;
+            resize: none;
+            background-color: $white-color;
+        }
+        &-file {
+            display: none;
+        }
+        &-fileImage {
+            padding: 8px 12px 10px 15px;
+            width: 133px;
+            height: 40px;
+            display: block;
+            background-color: $white-color;
+            color: $blue-color;
+            border: 1px solid $blue-color;
+            user-select: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        &-image {
+            display: inline-block;
+            width: 269px;
+            height: 170px;
+            object-fit: cover;
+        }
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .header.header-session {
+        background: none;
+        height: 50px;
+    }
+    .aside-form-category {
+        max-width: 221px;
+    }
+    .aside-form-description {
+        max-width: 441px;
+    }
+}

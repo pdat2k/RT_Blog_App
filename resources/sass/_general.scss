@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "SVN-Gilroy";
+    src: url("../fonts/SVN-GilroyBold.eot");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap");
+    font-family: $primary-font;
+    font-weight: 300;
+    background-color: $white-color;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+input,
+button,
+select {
+    outline: none;
+}
+p {
+    margin-bottom: 0;
+}
+
+.wrapper {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.content {
+    max-width: 1200px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+html {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
