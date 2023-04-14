@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\admin\BlogController as BlogAdminController;
 use App\Http\Controllers\User\RegisterController as RegisterUserController;
 use App\Http\Controllers\Admin\RegisterController as RegisterAdminController;
 use App\Http\Controllers\Blog\BlogController;
@@ -81,6 +82,13 @@ Route::group(['as' => 'admin.'], function () {
     Route::prefix('admin')->middleware('admin')->group(function () {
         Route::resource('users', AdminController::class)->names([
             'index' => 'home',
+            'destroy' => 'remove',
+            'edit' => 'edit',
+            'update' => 'update'
+        ]);
+
+        Route::resource('blogs', BlogAdminController::class)->names([
+            'index' => 'list',
         ]);
     });
 });

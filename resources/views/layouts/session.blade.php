@@ -5,7 +5,7 @@
             <div class="blogpost-box">
                 <form class="blogpost-box-form" action="{{ route('user.home') }}" method="get">
                     <input type="hidden" name="search" value="{{ $search ?? '' }}">
-                    <select class="form-select blogpost-category" name="category_id"
+                    <select class="form-select blogpost-category bg-white" name="category_id"
                         onchange='if(this.value != 0) { this.form.submit(); }'>
                         <option value="0" selected hidden>{{ __('util.category') }}</option>
                         @foreach ($categories as $id => $title)

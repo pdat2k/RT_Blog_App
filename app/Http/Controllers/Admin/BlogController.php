@@ -1,31 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\AdminInterface;
-use Exception;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    private $adminService;
-
-    public function __construct(AdminInterface $adminService)
-    {
-        $this->adminService = $adminService;
-    }
-
     public function index()
     {
-        $users = $this->adminService->listUser();
-        return view('admin.home', ['users' => $users]);
+       return view('admin.list');
     }
 
     /**
@@ -57,8 +46,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $user = $this->adminService->findUser($id);
-        return $user ? view('admin.detail', ['user' => $user]) : abort(403);
+        //
     }
 
     /**
@@ -69,13 +57,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->adminService->findUser($id);
-        [$role, $status] = $this->adminService->findRole();
-        return view('admin.edit', [
-            'user' => $user,
-            'roles' => $role,
-            'status' => $status
-        ]);
+        //
     }
 
     /**
@@ -87,8 +69,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->adminService->updateUser($request, $id);
-        return redirect()->route('admin.home');
+        //
     }
 
     /**
@@ -99,7 +80,6 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $this->adminService->removeUser($id);
-        return redirect()->route('admin.home');
+        //
     }
 }
