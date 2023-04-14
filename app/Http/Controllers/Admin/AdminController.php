@@ -69,7 +69,13 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->adminService->findUser($id);
+        [$role, $status] = $this->adminService->findRole();
+        return view('admin.edit', [
+            'user' => $user,
+            'roles' => $role,
+            'status' => $status
+        ]);
     }
 
     /**
@@ -81,7 +87,8 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->adminService->updateUser($request, $id);
+        return redirect()->route('admin.home');
     }
 
     /**
@@ -92,6 +99,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->adminService->removeUser($id);
+        return redirect()->route('admin.home');
     }
 }

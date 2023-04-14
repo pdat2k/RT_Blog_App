@@ -74,4 +74,13 @@ class User extends Authenticatable
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y');
     }
+
+    public function delete()
+    {
+        $this->blogs()->delete();
+        $this->comments()->delete();
+        $this->likes()->detach();
+
+        parent::delete();
+    }
 }

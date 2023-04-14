@@ -81,6 +81,9 @@ Route::group(['as' => 'admin.'], function () {
     Route::prefix('admin')->middleware('admin')->group(function () {
         Route::resource('users', AdminController::class)->names([
             'index' => 'home',
+            'destroy' => 'remove',
+            'edit' => 'edit',
+            'update' => 'update'
         ]);
     });
 });
