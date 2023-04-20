@@ -50,17 +50,26 @@
         &-category {
             max-width: 334px;
             height: 40px;
-            background-color: $white-color;
+            background-color: $white-color !important;
+            &:focus {
+                box-shadow: none !important;
+            }
         }
         &-title {
             width: 100%;
-            background-color: $white-color;
+            background-color: $white-color !important;
             height: 40px;
+            &:focus {
+                box-shadow: none !important;
+            }
         }
         &-description {
             height: 459px;
             resize: none;
-            background-color: $white-color;
+            background-color: $white-color !important;
+            &:focus {
+                box-shadow: none !important;
+            }
         }
         &-file {
             display: none;

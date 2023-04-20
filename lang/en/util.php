@@ -50,12 +50,16 @@ return [
     'textRegister' => 'Don’t have an account? Sign up here',
     'userRegister' => 'user.register',
     'signUp' => 'Sign up',
-    'userDetail' => 'User detail',
+    'userDetail' => 'User Detail',
     'textDeleteUser' => 'Do you want to delete this user?',
     'name1' => 'Name',
     'stt' => 'STT',
     'role' => 'Role',
     'status' => 'Status',
     'createdAt' => 'Created At',
-    'action' => 'Action'
+    'action' => 'Action',
+    'id' => 'Id',
+    'editUser' => 'Edit User',
+    'userList' => 'User List',
+    'detailUser' => 'Detail User'
 ];

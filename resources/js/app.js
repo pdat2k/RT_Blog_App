@@ -146,3 +146,37 @@ if (window.matchMedia("(max-width: 769px)").matches) {
         $(".header-nav-search").hide();
     });
 }
+
+$(".table-delete-user").each(function () {
+    $(this).click(function () {
+        const url = $(this).attr("data-url");
+        const id = $(this).attr("data-id");
+        let token = $(this).data("token");
+
+        $(".table-delete-userbtn").click(function () {
+            $.ajax({
+                url,
+                type: "DELETE",
+            });
+            $(`.table-user-row-${id}`).remove();
+            $(".deleteConfirmation").modal("hide");
+        });
+    });
+});
+
+$(".avatar-user-file").on("change", function (evt) {
+    const file = evt.target.files[0];
+    if (file) {
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/svg+xml",
+        ];
+        if (!allowedTypes.includes(file.type)) {
+            $(".avatar-image-edit").attr("src", "/images/default-image.jpg");
+            return;
+        }
+        $(".avatar-image-edit").attr("src", URL.createObjectURL(file));
+    }
+});
